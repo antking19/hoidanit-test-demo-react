@@ -3,15 +3,20 @@ import UserInfor from "./UserInfor";
 import DisplayInfo from "./DisplayInfo";
 
 class MyComponent extends React.Component {
+    state = {
+        listUsers: [
+            { id: 1, name: "Marcus", age: 31 },
+            { id: 2, name: "Cheung", age: 32 },
+            { id: 3, name: "Cuong", age: 33 },
+        ],
+    };
+
     render() {
-        const myInfor = ["ab", "c", "d"];
         return (
             <div>
                 <UserInfor />
                 <br />
-                <DisplayInfo name="Hoi Dan IT" age="30" />
-                <hr />
-                <DisplayInfo name={"Marcus"} age={33} myInfor={myInfor} />
+                <DisplayInfo listUsers={this.state.listUsers} />
             </div>
         );
     }
