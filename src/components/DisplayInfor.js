@@ -27,7 +27,7 @@ class DisplayInfor extends React.Component {
                 </div>
                 <img src={logo} />
                 {this.state.isShowHide && (
-                    <div>
+                    <>
                         {listUsers.map((user) => {
                             return (
                                 <div
@@ -40,7 +40,7 @@ class DisplayInfor extends React.Component {
                                 </div>
                             );
                         })}
-                    </div>
+                    </>
                 )}
             </div>
         );
