@@ -1,11 +1,16 @@
 import React from "react";
 import "./DisplayInfor.scss";
-import logo from "./../logo.svg";
+// import logo from "./../logo.svg";
 
 class DisplayInfor extends React.Component {
-    state = {
-        isShowHide: true,
-    };
+    constructor(props) {
+        console.log("Constructor 1");
+        super(props);
+
+        this.state = {
+            isShowHide: true,
+        };
+    }
 
     handleShowHide = () => {
         this.setState({
@@ -13,7 +18,24 @@ class DisplayInfor extends React.Component {
         });
     };
 
+    componentDidMount() {
+        console.log("componentDidMount");
+        setTimeout(() => {
+            document.title = "Marcus & Hoi Dan IT";
+        }, 3000);
+    }
+
+    componentDidUpdate(prevProps) {
+        console.log(this.props, prevProps);
+        if (this.props.listUsers !== prevProps.listUsers) {
+            if (this.props.listUsers.length === 5) {
+                alert("You got 5 users");
+            }
+        }
+    }
+
     render() {
+        console.log("Render");
         const { listUsers } = this.props;
 
         return (
