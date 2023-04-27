@@ -30,10 +30,12 @@ const Header = () => {
                     </Nav>
                     <Nav>
                         <div>
-                            <button className="btn btn-outline-dark mx-3">
+                            <button className="btn btn-outline-dark mx-3 btn-login">
                                 Login
                             </button>
-                            <button className="btn btn-dark">Sign Up</button>
+                            <button className="btn btn-dark btn-signup">
+                                Sign Up
+                            </button>
                         </div>
                         {/* <NavDropdown title="Setting" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">
