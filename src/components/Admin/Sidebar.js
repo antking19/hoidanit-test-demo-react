@@ -1,4 +1,5 @@
 import "react-pro-sidebar/dist/css/styles.css";
+import "./Sidebar.scss";
 import {
     ProSidebar,
     Menu,
@@ -16,6 +17,7 @@ import {
     FaRegLaughWink,
     FaHeart,
 } from "react-icons/fa";
+import { DiReact } from "react-icons/di";
 import sidebarBg from "../../assets/bg2.jpg";
 
 const Sidebar = (props) => {
@@ -42,7 +44,7 @@ const Sidebar = (props) => {
                             whiteSpace: "nowrap",
                         }}
                     >
-                        Hoi Dan IT
+                        <DiReact size={"3em"} color={"#00bfff"} /> Hoi Dan IT
                     </div>
                 </SidebarHeader>
 
@@ -50,20 +52,16 @@ const Sidebar = (props) => {
                     <Menu iconShape="circle">
                         <MenuItem
                             icon={<FaTachometerAlt />}
-                            suffix={<span className="badge red">New</span>}
+                            // suffix={<span className="badge red">New</span>}
                         >
                             dashboard
                         </MenuItem>
-                        <MenuItem icon={<FaGem />}> components</MenuItem>
                     </Menu>
                     <Menu iconShape="circle">
-                        <SubMenu
-                            suffix={<span className="badge yellow">3</span>}
-                            icon={<FaRegLaughWink />}
-                        >
-                            <MenuItem>1</MenuItem>
-                            <MenuItem>2</MenuItem>
-                            <MenuItem>3</MenuItem>
+                        <SubMenu title={"Features"} icon={<FaGem />}>
+                            <MenuItem>Quản lý Users</MenuItem>
+                            <MenuItem>Quản lý Bài Quiz</MenuItem>
+                            <MenuItem>Quản lý Câu Hỏi</MenuItem>
                         </SubMenu>
                     </Menu>
                 </SidebarContent>
@@ -76,7 +74,7 @@ const Sidebar = (props) => {
                         }}
                     >
                         <a
-                            href="https://github.com/azouaoui-med/react-pro-sidebar"
+                            href="https://hoidanit.com.vn/course"
                             target="_blank"
                             className="sidebar-btn"
                             rel="noopener noreferrer"
@@ -89,7 +87,7 @@ const Sidebar = (props) => {
                                     overflow: "hidden",
                                 }}
                             >
-                                viewSource
+                                Hoi Dan IT
                             </span>
                         </a>
                     </div>
