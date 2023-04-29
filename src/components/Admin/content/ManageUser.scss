@@ -1,0 +1,25 @@
+.modal-add-user {
+    .img-preview {
+        height: 150px;
+        border: 1px dashed #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ccc;
+    }
+    img {
+        height: 100%;
+    }
+
+    .label-upload {
+        // cursor: pointer;
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        // background-color: #dcdcdc;
+        // padding: 5px 10px;
+        // border-radius: 5px;
+    }
+}
