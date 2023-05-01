@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { FcPlus } from "react-icons/fc";
+import { toast } from "react-toastify";
+import { postCreateNewUser } from "../../../services/apiServices";
 
 const ModalCreateUser = (props) => {
     const { show, setShow } = props;
@@ -35,19 +37,45 @@ const ModalCreateUser = (props) => {
         // console.log(URL.createObjectURL(event.target.files[0]));
     };
 
-    const handleSubmitCreateUser = async () => {
-        const form = new FormData();
-        form.append("email", email);
-        form.append("password", password);
-        form.append("username", username);
-        form.append("role", role);
-        form.append("userImage", image);
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+    };
 
-        const res = await axios.post(
-            "http://localhost:8081/api/v1/participant",
-            form
+    const handleSubmitCreateUser = async () => {
+        const isValidEmail = validateEmail(email);
+
+        if (!isValidEmail) {
+            toast.error("Invalid Email");
+            return;
+        }
+
+        if (!password) {
+            toast.error("Invalid Passrod");
+            return;
+        }
+
+        const data = await postCreateNewUser(
+            email,
+            password,
+            username,
+            role,
+            image
         );
-        console.log(res);
+        console.log(data);
+
+        if (data && data.EC === 0) {
+            toast.success(data.EM);
+            handleClose();
+        }
+
+        if (data && data.EC !== 0) {
+            toast.error(data.EM);
+            handleClose();
+        }
     };
 
     return (
