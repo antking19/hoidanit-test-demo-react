@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -65,11 +64,11 @@ const ModalCreateUser = (props) => {
             role,
             image
         );
-        console.log(data);
 
         if (data && data.EC === 0) {
             toast.success(data.EM);
             handleClose();
+            await props.fetchListUsers();
         }
 
         if (data && data.EC !== 0) {
@@ -80,10 +79,6 @@ const ModalCreateUser = (props) => {
 
     return (
         <>
-            {/* <Button variant="primary" onClick={handleShow}>
-                Launch demo modal
-            </Button> */}
-
             <Modal
                 show={show}
                 onHide={handleClose}
