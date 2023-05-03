@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { FcPlus } from "react-icons/fc";
 import { toast } from "react-toastify";
-import { postCreateNewUser } from "../../../services/apiServices";
+import { pustUdapteUser } from "../../../services/apiServices";
 import _ from "lodash";
 
 const ModalUpdateUser = (props) => {
@@ -19,6 +19,7 @@ const ModalUpdateUser = (props) => {
         setRole("USER");
         setImage("");
         setpreviewImage("");
+        props.resetUpdateData();
     };
     // const handleShow = () => setShow(true);
 
@@ -64,18 +65,7 @@ const ModalUpdateUser = (props) => {
             return;
         }
 
-        if (!password) {
-            toast.error("Invalid Passrod");
-            return;
-        }
-
-        const data = await postCreateNewUser(
-            email,
-            password,
-            username,
-            role,
-            image
-        );
+        const data = await pustUdapteUser(dataUpdate.id, username, role, image);
 
         if (data && data.EC === 0) {
             toast.success(data.EM);
