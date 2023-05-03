@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { putUdapteUser } from "../../../services/apiServices";
 import _ from "lodash";
 
-const ModalUpdateUser = (props) => {
+const ModalViewUser = (props) => {
     const { show, setShow, dataUpdate } = props;
 
     // const [show, setShow] = useState(false);
@@ -57,29 +57,7 @@ const ModalUpdateUser = (props) => {
             );
     };
 
-    const handleSubmitCreateUser = async () => {
-        const isValidEmail = validateEmail(email);
-
-        if (!isValidEmail) {
-            toast.error("Invalid Email");
-            return;
-        }
-
-        const data = await putUdapteUser(dataUpdate.id, username, role, image);
-
-        if (data && data.EC === 0) {
-            toast.success(data.EM);
-            handleClose();
-            await props.fetchListUsers();
-        }
-
-        if (data && data.EC !== 0) {
-            toast.error(data.EM);
-            handleClose();
-        }
-    };
-
-    // console.log("render dataupdate: ", dataUpdate);
+    console.log("render dataupdate: ", dataUpdate);
 
     return (
         <>
@@ -91,7 +69,7 @@ const ModalUpdateUser = (props) => {
                 className="modal-add-user"
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Update a user</Modal.Title>
+                    <Modal.Title>View a user</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form className="row g-3">
@@ -124,6 +102,7 @@ const ModalUpdateUser = (props) => {
                             <label className="form-label">Username</label>
                             <input
                                 type="text"
+                                disabled
                                 className="form-control"
                                 value={username}
                                 onChange={(event) => {
@@ -133,7 +112,7 @@ const ModalUpdateUser = (props) => {
                         </div>
                         <div className="col-md-6">
                             <label className="form-label">Role</label>
-                            <select
+                            {/* <select
                                 className="form-select form-select"
                                 aria-label=".form-select example"
                                 onChange={(event) =>
@@ -143,9 +122,18 @@ const ModalUpdateUser = (props) => {
                             >
                                 <option value="USER">USER</option>
                                 <option value="ADMIN">ADMIN</option>
-                            </select>
+                            </select> */}
+                            <input
+                                type="text"
+                                disabled
+                                className="form-control"
+                                value={role}
+                                onChange={(event) => {
+                                    setRole(event.target.value);
+                                }}
+                            />
                         </div>
-                        <div className="col-md-12">
+                        {/* <div className="col-md-12">
                             <label
                                 className="form-label label-upload btn btn-dark"
                                 htmlFor="labelUploadFile"
@@ -159,7 +147,7 @@ const ModalUpdateUser = (props) => {
                                 id="labelUploadFile"
                                 onChange={(event) => handleUploadImage(event)}
                             />
-                        </div>
+                        </div> */}
                         <div className="col-md-12 img-preview">
                             {previewImage ? (
                                 <img src={previewImage} />
@@ -173,16 +161,10 @@ const ModalUpdateUser = (props) => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button
-                        variant="primary"
-                        onClick={() => handleSubmitCreateUser()}
-                    >
-                        Save Changes
-                    </Button>
                 </Modal.Footer>
             </Modal>
         </>
     );
 };
 
-export default ModalUpdateUser;
+export default ModalViewUser;
