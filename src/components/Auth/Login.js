@@ -1,12 +1,27 @@
 import { useState } from "react";
 import "./Login.scss";
+import { useNavigate } from "react-router-dom";
+import { postLogin } from "../../services/apiServices";
+import { toast } from "react-toastify";
 
 const Login = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleLogin = () => {
-        alert("login");
+    const navigate = useNavigate();
+
+    const handleLogin = async () => {
+        const data = await postLogin(email, password);
+        console.log(data);
+
+        if (data && data.EC === 0) {
+            toast.success(data.EM);
+            navigate("/");
+        }
+
+        if (data && data.EC !== 0) {
+            toast.error(data.EM);
+        }
     };
 
     return (
@@ -55,6 +70,15 @@ const Login = (props) => {
                                 >
                                     Login in to Hoi Dan IT
                                 </button>
+                            </div>
+                            <div
+                                className="mt-3 text-center"
+                                style={{ cursor: "pointer" }}
+                                onClick={() => {
+                                    navigate("/");
+                                }}
+                            >
+                                &#60;&#60; Go to Homepage
                             </div>
                         </div>
                     </div>
