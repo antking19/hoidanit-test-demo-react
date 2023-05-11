@@ -42,7 +42,12 @@ const Header = () => {
                             >
                                 Login
                             </button>
-                            <button className="btn btn-dark btn-signup">
+                            <button
+                                className="btn btn-dark btn-signup"
+                                onClick={() => {
+                                    navigate("/register");
+                                }}
+                            >
                                 Sign Up
                             </button>
                         </div>

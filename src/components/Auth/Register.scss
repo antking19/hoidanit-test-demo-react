@@ -1,0 +1,14 @@
+.register-container {
+    .register-form {
+        .inputRegisterPassword {
+            position: relative;
+
+            .registerEyesPassword {
+                position: absolute;
+                right: 10px;
+                top: 5px;
+                cursor: pointer;
+            }
+        }
+    }
+}
